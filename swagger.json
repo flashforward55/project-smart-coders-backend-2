@@ -1,0 +1,24 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0.1",
+    "title": "GooseTrack",
+    "description": "Personal to-do list website"
+  },
+  "consumes": ["application/json", "multipart/form-data"],
+  "produces": ["application/json", "multipart/form-data"],
+  "servers": [
+    {
+      "url": "https://project-smart-coders-backend.onrender.com"
+    },
+    { "url": "http://localhost:8000" }
+  ],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    },
+    { "name": "Reviews", "description": "Reviews endpoints" },
+    { "name": "Tasks", "description": "Tasks endpoints" }
+  ]
+}
