@@ -16,11 +16,4 @@ router.patch(
   validateBody(updateUserSchema),
   updateUser
 );
-router.patch(
-  '/user',
-  auth,
-  uploadAvatar,
-  validateBody(updateUserSchema),
-  updateUser
-);
 module.exports = router;
