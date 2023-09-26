@@ -1,0 +1,53 @@
+const ctrlWrapper = require('../helpers/ctrlWrapper');
+const {
+  registerService,
+  loginService,
+  logoutService,
+} = require('../services/authServices');
+
+const { User } = require('../models/user');
+
+const register = async (req, res) => {
+  await registerService(req.body);
+  const { user, token } = await loginService(req.body);
+  res.status(201).json({ user, token });
+};
+
+const login = async (req, res) => {
+  const { user, token } = await loginService(req.body);
+  res.json({ user, token });
+};
+
+const logout = async (req, res) => {
+  await logoutService(req.user);
+  res.status(200).json({ message: 'Logout successful' });
+};
+
+const getCurrent = (req, res) => {
+  const user = req.user;
+  res.json({ user });
+};
+
+const updateUser = async (req, res) => {
+  const { _id: id } = req.user;
+
+  const userFromDB = await User.findById(id);
+
+  if (req.body.avatarURL === '') {
+    req.body.avatarURL = userFromDB.avatarURL;
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+
+  res.json(updatedUser);
+};
+
+module.exports = {
+  register: ctrlWrapper(register),
+  login: ctrlWrapper(login),
+  logout: ctrlWrapper(logout),
+  getCurrent: ctrlWrapper(getCurrent),
+  updateUser: ctrlWrapper(updateUser),
+};
