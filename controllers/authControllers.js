@@ -1,4 +1,4 @@
-const ctrlWrapper = require('../helpers/ctrlWrapper');
+const { ctrlWrapper } = require('../helpers');
 const {
   registerService,
   loginService,

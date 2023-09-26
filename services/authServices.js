@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 
 const { User } = require('../models/user');
-const HttpError = require('../helpers/HttpError');
-const { createTokens } = require('../helpers/createTokens');
+
+const { createTokens, HttpError } = require('../helpers');
 
 const registerService = async body => {
   const user = await User.findOne({ email: body.email });

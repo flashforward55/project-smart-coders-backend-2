@@ -1,5 +1,5 @@
 const multer = require('multer');
-const handleUpload = require('../helpers/handleUpload');
+const { handleUpload } = require('../helpers');
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });

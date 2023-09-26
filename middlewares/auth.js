@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const HttpError = require('../helpers/HttpError');
+const { HttpError } = require('../helpers');
 const { User } = require('../models/user');
 
 const { ACCESS_TOKEN_SECRET } = process.env;
