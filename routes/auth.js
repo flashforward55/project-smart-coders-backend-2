@@ -1,18 +1,12 @@
 const express = require('express');
 
-const { auth, validateBody /* uploadAvatar */ } = require('../middlewares');
+const { auth, validateBody } = require('../middlewares');
 const {
   registerValidationSchema,
   loginValidationSchema,
 } = require('../schemas/authValidationSchema');
-/* const { updateUserSchema } = require('../schemas/updateUserSchema'); */
 
-const {
-  register,
-  login,
-  logout,
-  /*   updateUser, */
-} = require('../controllers/authControllers');
+const { register, login, logout } = require('../controllers/authControllers');
 
 const router = express.Router();
 

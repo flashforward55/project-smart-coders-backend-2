@@ -2,9 +2,7 @@ const express = require('express');
 
 const { auth, uploadAvatar, validateBody } = require('../middlewares');
 const { updateUserSchema } = require('../schemas/updateUserSchema');
-const { updateUser } = require('../controllers/authControllers');
-
-const { getCurrent } = require('../controllers/authControllers');
+const { updateUser, getCurrent } = require('../controllers/authControllers');
 
 const router = express.Router();
 
