@@ -12,8 +12,8 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 const {
   authRouter,
-  /*   reviewsRouter,
-  taskRouter, */
+  reviewsRouter,
+  /* taskRouter, */
   getCurent,
 } = require('./routes');
 
@@ -22,9 +22,9 @@ app.use(cors());
 app.use(express.json());
 
 /* app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc)); */
-/* app.use('/reviews', reviewsRouter);
-app.use('/tasks', taskRouter); */
+/* app.use('/tasks', taskRouter); */
 app.use('/auth', authRouter);
+app.use('/reviews', reviewsRouter);
 app.use('/users', getCurent);
 
 app.use((_, res) => {
