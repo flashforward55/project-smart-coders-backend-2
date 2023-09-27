@@ -13,5 +13,4 @@ const createTokens = user => {
   return { accessToken };
 };
 
-// module.exports = { createTokens };
 module.exports = createTokens;
