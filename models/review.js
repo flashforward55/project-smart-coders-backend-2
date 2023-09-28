@@ -1,29 +1,28 @@
-const mongoose = require('mongoose');
+const { model, Schema } = require('mongoose');
 
-const reviewsSchema = new mongoose.Schema(
+const reviewSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
+    rating: {
+      type: Number,
+      required: [true, 'Set rating for required'],
+      enum: [1, 2, 3, 4, 5],
+      min: 0,
+      max: 5,
+      default: 0,
     },
     comment: {
       type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      default: 1,
+      maxLength: 300,
     },
     owner: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'user',
+      required: true,
     },
   },
-
-  {
-    versionKey: false,
-    timestamps: true,
-  }
+  { versionKey: false, timestamps: true }
 );
-const Review = mongoose.model('review', reviewsSchema);
-module.exports = { Review };
+
+const Review = model('review', reviewSchema);
+
+module.exports = Review;

@@ -1,11 +1,7 @@
 const { ctrlWrapper } = require('../helpers');
-const {
-  registerService,
-  loginService,
-  logoutService,
-} = require('../services/authServices');
+const { registerService, loginService, logoutService } = require('../services');
 
-const { User } = require('../models/user');
+const { User } = require('../models');
 
 const register = async (req, res) => {
   await registerService(req.body);

@@ -9,7 +9,7 @@
   "produces": ["application/json", "multipart/form-data"],
   "servers": [
     {
-      "url": "https://project-smart-coders-backend.onrender.com"
+      "url": "https://goose-backend.onrender.com"
     },
     { "url": "http://localhost:8000" }
   ],
