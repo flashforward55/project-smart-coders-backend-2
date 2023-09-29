@@ -9,9 +9,9 @@
   "produces": ["application/json", "multipart/form-data"],
   "servers": [
     {
-      "url": "https://project-smart-coders-backend.onrender.com"
+      "url": "http://localhost:8000"
     },
-    { "url": "http://localhost:8000" }
+    { "url": "https://project-smart-coders-backend.onrender.com" }
   ],
   "tags": [
     {
