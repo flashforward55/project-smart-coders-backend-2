@@ -402,7 +402,12 @@
                 "example": "2023-09-30T08:04:41.035Z"
               }
             }
-          }
+          },
+           "token": {
+                "type": "string",
+                "description": "Access token",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTVkNmZjNDY0MjhkMDY2ZjNmMGVkOCIsImlhdCI6MTY5NTkzMDEwOCwiZXhwIjoxNjk2MDE2NTA4fQ.vYIHqYhfjGBxYk3q0ZhhNXWTYobi8OM4xHdMXvbuDns"
+              }
         }
       },
       "CurrentUserResponse": {
