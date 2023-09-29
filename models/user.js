@@ -45,7 +45,7 @@ const userSchema = new Schema(
       match: birthdayRegex,
       default: todayDate,
     },
-    token: { type: String },
+    token: String,
   },
   {
     versionKey: false,
@@ -66,4 +66,4 @@ userSchema.methods.toJSON = function () {
 
 const User = model('user', userSchema);
 
-module.exports = { User };
+module.exports = User;

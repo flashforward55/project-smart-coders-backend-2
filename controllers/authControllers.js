@@ -1,21 +1,43 @@
 const { ctrlWrapper } = require('../helpers');
-const {
-  registerService,
-  loginService,
-  logoutService,
-} = require('../services/authServices');
+const { registerService, loginService, logoutService } = require('../services');
 
-const { User } = require('../models/user');
+const { User } = require('../models');
 
 const register = async (req, res) => {
   await registerService(req.body);
   const { user, token } = await loginService(req.body);
-  res.status(201).json({ user, token });
+
+  res.status(201).json({
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      avatarURL: user.avatarURL,
+      phone: user.phone,
+      skype: user.skype,
+      birthday: user.birthday,
+      createdAt: user.createdAt,
+    },
+    token,
+  });
 };
 
 const login = async (req, res) => {
   const { user, token } = await loginService(req.body);
-  res.json({ user, token });
+
+  res.status(201).json({
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      avatarURL: user.avatarURL,
+      phone: user.phone,
+      skype: user.skype,
+      birthday: user.birthday,
+      createdAt: user.createdAt,
+    },
+    token,
+  });
 };
 
 const logout = async (req, res) => {

@@ -1,6 +1,6 @@
-const { Task } = require('../models/task');
-const HttpError = require('../helpers/HttpError');
-const ctrlWrapper = require('../helpers/ctrlWrapper');
+const { Task } = require('../models');
+const { HttpError } = require('../helpers');
+const { ctrlWrapper } = require('../helpers');
 
 const getAll = async (req, res, next) => {
   const { _id: owner } = req.user;
