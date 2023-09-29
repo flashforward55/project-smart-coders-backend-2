@@ -9,9 +9,9 @@
   "produces": ["application/json", "multipart/form-data"],
   "servers": [
     {
-      "url": "https://goose-backend.onrender.com"
+      "url": "http://localhost:8000"
     },
-    { "url": "http://localhost:8000" }
+    { "url": "https://project-smart-coders-backend.onrender.com" }
   ],
   "tags": [
     {
@@ -20,5 +20,640 @@
     },
     { "name": "Reviews", "description": "Reviews endpoints" },
     { "name": "Tasks", "description": "Tasks endpoints" }
-  ]
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "New user registration",
+        "description": "This endpoint register new user in database",
+        "parameters": [],
+        "requestBody": {
+          "description": "Registration object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Email or password is incorrect",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401LoginResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "This user is already exist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error409RegistrationResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User login",
+        "description": "This endpoint login user",
+        "parameters": [],
+        "requestBody": {
+          "description": "Login object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400Response"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Email or password is incorrect",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401LoginResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "description": "This endpoint logout user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LogoutResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials are missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/current": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current user",
+        "description": "This endpoint gets information about current user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentUserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials are missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/edit": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "User updating",
+        "description": "This endpoint updates user's info in database",
+        "security": [{ "Bearer": [] }],
+        "parameters": [],
+        "requestBody": {
+          "description": "Updating object with form-data",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatingRequest"
+              },
+              "encoding": {
+                "avatar": { "contentType": "image/png, image/jpeg" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error400Response" }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized: Authentication credentials are missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "123456Qw"
+          }
+        }
+      },
+      "LoginResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CurrentUserResponse"
+          },
+          {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "token": {
+                "type": "string",
+                "description": "Access token",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTVkNmZjNDY0MjhkMDY2ZjNmMGVkOCIsImlhdCI6MTY5NTkzMDEwOCwiZXhwIjoxNjk2MDE2NTA4fQ.vYIHqYhfjGBxYk3q0ZhhNXWTYobi8OM4xHdMXvbuDns"
+              }
+            }
+          }
+        ]
+      },
+      "RegistrationRequest": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "John"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/LoginRequest"
+          }
+        ]
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User's id in database (type ObjectId)",
+                "example": "64d5eb99a3ed01b542412a5d"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "John"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "avatarURL": {
+                "type": "string",
+                "description": "User's avatar file name",
+                "example": ""
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's phone number",
+                "example": ""
+              },
+              "skype": {
+                "type": "string",
+                "description": "User's skype number",
+                "example": ""
+              },
+              "birthday": {
+                "type": "string",
+                "description": "User's date of birth",
+                "example": "2023-09-30"
+              },
+               "createdAt": {
+                "type": "string",
+                "description": "Date of user profile creating",
+                "example": "2023-09-30T08:04:41.035Z"
+              }
+            }
+          },
+           "token": {
+                "type": "string",
+                "description": "Access token",
+                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTVkNmZjNDY0MjhkMDY2ZjNmMGVkOCIsImlhdCI6MTY5NTkzMDEwOCwiZXhwIjoxNjk2MDE2NTA4fQ.vYIHqYhfjGBxYk3q0ZhhNXWTYobi8OM4xHdMXvbuDns"
+              }
+        }
+      },
+      "CurrentUserResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User's id in database (type ObjectId)",
+                "example": "64d5eb99a3ed01b542412a5d"
+              },
+              "name": {
+                "type": "string",
+                "description": "User's name",
+                "example": "John"
+              },
+              "email": {
+                "type": "string",
+                "description": "User's email",
+                "format": "email"
+              },
+              "avatarURL": {
+                "type": "string",
+                "description": "User's avatar file name",
+                "example": "https://res.cloudinary.com/dqmascmsd/image/upload/v1695930127/fyf0nrxglk8uqbplddbb.jpg"
+              },
+              "createdAt": {
+                "type": "string",
+                "description": "Date of user profile creating",
+                "example": "2023-09-30T08:04:41.035Z"
+              },
+              "birthday": {
+                "type": "string",
+                "description": "User's date of birth",
+                "example": "2002-02-22"
+              },
+              "phone": {
+                "type": "string",
+                "description": "User's phone number",
+                "example": "38 (000) 123 45 67"
+              },
+              "skype": {
+                "type": "string",
+                "description": "User's skype number",
+                "example": "38 (000) 123 45 67"
+              }
+            }
+          }
+        }
+      },
+      "LogoutResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Logout successful"
+          }
+        }
+      },
+      "UpdatingRequest": {
+        "type": "object",
+        "required": ["name", "email"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "JoiUpdated"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "test2@i.ua"
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "description": "User's avatar",
+            "example": "beautiful_picture.png"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+38 (000) 123 45 67"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's skype number",
+            "example": "+44 (000) 123 45 67"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's date of birth",
+            "example": "2000-02-20"
+          }
+        }
+      },
+      "UpdatingResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's id in database (type ObjectId)",
+            "example": "64d5eb99a3ed01b542412a5f"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Joi"
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "example": "test2@i.ua"
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's phone number",
+            "example": "+38 (000) 123 45 67"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's skype number",
+            "example": "+44 (000) 123 45 67"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's date of birth",
+            "example": "2000-02-20"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "User's avatar file name",
+            "example": "http://res.cloudinary.com/dixcrd38z/image/upload/v1692198776/uukgeljzzqsoqguemzsk.png"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Date of user profile creating",
+            "example": "2023-10-11T08:04:41.035Z"
+          }
+        }
+      },
+      "Error400Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Validation error"
+          },
+          "status": {
+            "type": "integer",
+            "example": 400
+          }
+        }
+      },
+      "Error401Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Unauthorized"
+          },
+          "status": {
+            "type": "integer",
+            "example": 401
+          }
+        }
+      },
+      "Error401LoginResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Email or password is incorrect"
+          },
+          "status": {
+            "type": "integer",
+            "example": 401
+          }
+        }
+      },
+      "Error403Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Invalid token"
+          },
+          "status": {
+            "type": "integer",
+            "example": 403
+          }
+        }
+      },
+      "Error404Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Not Found"
+          },
+          "status": {
+            "type": "integer",
+            "example": 404
+          }
+        }
+      },
+      "Error409RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "This user is already exist"
+          },
+          "status": {
+            "type": "integer",
+            "example": 409
+          }
+        }
+      },
+      "Error500Response": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Internal Server Error"
+          },
+          "status": {
+            "type": "integer",
+            "example": 500
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "BearerFormat": "JWT",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Bearer token to access these API endpoints"
+      }
+    }
+  }
 }
