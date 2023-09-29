@@ -11,7 +11,6 @@ const {
   register,
   login,
   logout,
-  getCurrent,
   updateUser,
 } = require('../controllers/authControllers');
 
@@ -20,7 +19,6 @@ const router = express.Router();
 router.post('/register', validateBody(registerValidationSchema), register);
 router.post('/login', validateBody(loginValidationSchema), login);
 router.post('/logout', auth, logout);
-router.get('/current', auth, getCurrent);
 
 router.patch(
   '/user',

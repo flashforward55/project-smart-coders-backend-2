@@ -6,8 +6,8 @@ const { User } = require('../models');
 const register = async (req, res) => {
   await registerService(req.body);
   const { user, token } = await loginService(req.body);
-  res.status(201).json({ user, token });
-  /*  res.status(201).json({
+
+  res.status(201).json({
     user: {
       _id: user._id,
       name: user.name,
@@ -17,16 +17,15 @@ const register = async (req, res) => {
       skype: user.skype,
       birthday: user.birthday,
       createdAt: user.createdAt,
-      token: user.token,
     },
     token,
-  }); */
+  });
 };
 
 const login = async (req, res) => {
   const { user, token } = await loginService(req.body);
-  res.json({ user, token });
-  /* res.status(201).json({
+
+  res.status(201).json({
     user: {
       _id: user._id,
       name: user.name,
@@ -36,10 +35,9 @@ const login = async (req, res) => {
       skype: user.skype,
       birthday: user.birthday,
       createdAt: user.createdAt,
-      token: user.token,
     },
     token,
-  }); */
+  });
 };
 
 const logout = async (req, res) => {
