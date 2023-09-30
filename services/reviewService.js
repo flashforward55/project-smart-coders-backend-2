@@ -31,7 +31,7 @@ const createService = async (user, body) => {
   const existingReview = await Review.findOne({ owner: id }).exec();
 
   if (existingReview) {
-    throw new HttpError(404, 'You have already made a review.');
+    throw new HttpError(403, 'You have already made a review.');
   }
 
   const newReview = {

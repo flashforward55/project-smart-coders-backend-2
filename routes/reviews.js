@@ -8,7 +8,7 @@ const {
   deleteUserReview,
 } = require('../controllers/reviewsController');
 
-const { auth, validateBody } = require('../middlewares');
+const { auth, validateBody, validateReview } = require('../middlewares');
 
 const { reviewSchemas } = require('../schemas/reviewSchemas');
 
@@ -18,9 +18,21 @@ router.get('/', getAllReviews);
 
 router.get('/own', auth, getUserReview);
 
-router.post('/own', auth, validateBody(reviewSchemas), createUserReview);
+router.post(
+  '/own',
+  auth,
+  validateReview,
+  validateBody(reviewSchemas),
+  createUserReview
+);
 
-router.patch('/own', auth, validateBody(reviewSchemas), updateUserReview);
+router.patch(
+  '/own',
+  auth,
+  validateReview,
+  validateBody(reviewSchemas),
+  updateUserReview
+);
 
 router.delete('/own', auth, deleteUserReview);
 
