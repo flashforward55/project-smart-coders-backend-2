@@ -1,24 +1,27 @@
 const express = require('express');
 
-const { validateBody, auth } = require('../middlewares');
-const { reviewsAddSchema, reviewsUpdateSchema } = require('../schemas/reviewSchemas');
 const {
   getAllReviews,
   getUserReview,
-  addReview,
-  updateReview,
-  deleteReview,
+  createUserReview,
+  updateUserReview,
+  deleteUserReview,
 } = require('../controllers/reviewsController');
+
+const { auth, validateBody } = require('../middlewares');
+
+const { reviewSchemas } = require('../schemas/reviewSchemas');
 
 const router = express.Router();
 
-router.route('/').get(getAllReviews);
-router
-  .route('/own')
-  .all(auth)
-  .get(getUserReview)
-  .post(validateBody(reviewsAddSchema), addReview)
-  .patch(validateBody(reviewsUpdateSchema), updateReview)
-  .delete(deleteReview);
+router.get('/', getAllReviews);
+
+router.get('/own', auth, getUserReview);
+
+router.post('/own', auth, validateBody(reviewSchemas), createUserReview);
+
+router.patch('/own', auth, validateBody(reviewSchemas), updateUserReview);
+
+router.delete('/own', auth, deleteUserReview);
 
 module.exports = router;
