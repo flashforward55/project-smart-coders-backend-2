@@ -1056,6 +1056,15 @@
           }
         }
       },
+      "Error400AllTasksResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Invalid date format. 'Year' should be in YYYY format, 'month' should be in MM format"
+          }
+        }
+      },
       "Error401Response": {
         "type": "object",
         "properties": {
