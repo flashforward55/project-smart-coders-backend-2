@@ -5,26 +5,42 @@
     "title": "GooseTrack",
     "description": "Personal to-do list website"
   },
-  "consumes": ["application/json", "multipart/form-data"],
-  "produces": ["application/json", "multipart/form-data"],
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json",
+    "multipart/form-data"
+  ],
   "servers": [
     {
       "url": "http://localhost:8000"
     },
-    { "url": "https://project-smart-coders-backend.onrender.com" }
+    {
+      "url": "https://project-smart-coders-backend.onrender.com"
+    }
   ],
   "tags": [
     {
       "name": "Auth",
       "description": "Authorization endpoints"
     },
-    { "name": "Reviews", "description": "Reviews endpoints" },
-    { "name": "Tasks", "description": "Tasks endpoints" }
+    {
+      "name": "Reviews",
+      "description": "Reviews endpoints"
+    },
+    {
+      "name": "Tasks",
+      "description": "Tasks endpoints"
+    }
   ],
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "New user registration",
         "description": "This endpoint register new user in database",
         "parameters": [],
@@ -95,7 +111,9 @@
     },
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "User login",
         "description": "This endpoint login user",
         "parameters": [],
@@ -156,11 +174,17 @@
     },
     "/auth/logout": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "User logout",
         "description": "This endpoint logout user",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -197,11 +221,17 @@
     },
     "/users/current": {
       "get": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "Get current user",
         "description": "This endpoint gets information about current user",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -238,10 +268,16 @@
     },
     "/users/edit": {
       "patch": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "summary": "User updating",
         "description": "This endpoint updates user's info in database",
-        "security": [{ "Bearer": [] }],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
         "parameters": [],
         "requestBody": {
           "description": "Updating object with form-data",
@@ -252,7 +288,9 @@
                 "$ref": "#/components/schemas/UpdatingRequest"
               },
               "encoding": {
-                "avatar": { "contentType": "image/png, image/jpeg" }
+                "avatar": {
+                  "contentType": "image/png, image/jpeg"
+                }
               }
             }
           }
@@ -272,7 +310,9 @@
             "description": "Bad request (invalid request body)",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Error400Response" }
+                "schema": {
+                  "$ref": "#/components/schemas/Error400Response"
+                }
               }
             }
           },
@@ -298,13 +338,322 @@
           }
         }
       }
+    },
+    "/tasks": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get all tasks for a month for an authorized user",
+        "parameters": [
+          {
+            "name": "month",
+            "in": "query",
+            "description": "Two digits of the month",
+            "schema": {
+              "type": "string",
+              "example": "09"
+            },
+            "required": true
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Four digits of the year",
+            "schema": {
+              "type": "string",
+              "example": "2023"
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AllTasksForMonthResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400AllTasksResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tasks not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create new task for an authorized user",
+        "parameters": [],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "This endpoint is designed for creating new user`s task. If the creation of a new task is successful, the created task object is returned in the response. Access to this endpoint requires authentication, so the authorization token must be included in the request header.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created new task",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrUpdateTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400AllTasksResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "patch": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Update task for an authorized user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Task's id"
+          }
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "requestBody": {
+          "description": "This endpoint is intended for updating any fields of user tasks. The task search is conducted by its id in the query string. If the task update is successful, the updated task object is returned in the response. Access to this endpoint requires authentication, so the authorization token must be included in the request header.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated task",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOrUpdateTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid date format",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400AllTasksResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tasks not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Remove task for an authorized user",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Task's id"
+          }
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task deleted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveTaskResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized. Authentication credentials are missing or invalid",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error401Response"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tasks not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error404Response"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500Response"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
       "LoginRequest": {
         "type": "object",
-        "required": ["email", "password"],
+        "required": [
+          "email",
+          "password"
+        ],
         "properties": {
           "email": {
             "type": "string",
@@ -326,7 +675,9 @@
           },
           {
             "type": "object",
-            "required": ["name"],
+            "required": [
+              "name"
+            ],
             "properties": {
               "token": {
                 "type": "string",
@@ -341,7 +692,9 @@
         "allOf": [
           {
             "type": "object",
-            "required": ["name"],
+            "required": [
+              "name"
+            ],
             "properties": {
               "name": {
                 "type": "string",
@@ -396,18 +749,18 @@
                 "description": "User's date of birth",
                 "example": "2023-09-30"
               },
-               "createdAt": {
+              "createdAt": {
                 "type": "string",
                 "description": "Date of user profile creating",
                 "example": "2023-09-30T08:04:41.035Z"
               }
             }
           },
-           "token": {
-                "type": "string",
-                "description": "Access token",
-                "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTVkNmZjNDY0MjhkMDY2ZjNmMGVkOCIsImlhdCI6MTY5NTkzMDEwOCwiZXhwIjoxNjk2MDE2NTA4fQ.vYIHqYhfjGBxYk3q0ZhhNXWTYobi8OM4xHdMXvbuDns"
-              }
+          "token": {
+            "type": "string",
+            "description": "Access token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MTVkNmZjNDY0MjhkMDY2ZjNmMGVkOCIsImlhdCI6MTY5NTkzMDEwOCwiZXhwIjoxNjk2MDE2NTA4fQ.vYIHqYhfjGBxYk3q0ZhhNXWTYobi8OM4xHdMXvbuDns"
+          }
         }
       },
       "CurrentUserResponse": {
@@ -471,7 +824,10 @@
       },
       "UpdatingRequest": {
         "type": "object",
-        "required": ["name", "email"],
+        "required": [
+          "name",
+          "email"
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -550,6 +906,140 @@
             "type": "string",
             "description": "Date of user profile creating",
             "example": "2023-10-11T08:04:41.035Z"
+          }
+        }
+      },
+            "BaseTask": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Task`s title. Must have no more than 250 characters",
+            "maxLength": 250,
+            "example": "Do a morning exercise"
+          },
+          "start": {
+            "type": "string",
+            "description": "Task`s start time. Must be in hh:mm format and not exceed 23:59",
+            "example": "09:00"
+          },
+          "end": {
+            "type": "string",
+            "description": "Task`s end time. Must be in hh:mm format, not exceed 23:59 and be greater than start time",
+            "example": "09:10"
+          },
+          "priority": {
+            "type": "string",
+            "description": "Task`s priority. Must be one of: low, medium, or high.",
+            "enum": ["low", "medium", "high"],
+            "example": "medium"
+          },
+          "date": {
+            "type": "string",
+            "description": "Task`s completion date. Must be in YYYY-MM-DD format and start from 2023",
+            "example": "2023-09-01"
+          },
+          "category": {
+            "type": "string",
+            "description": "Task`s category. Must be one of: to-do, in-progress or done",
+            "enum": ["to-do", "in-progress", "done"],
+            "example": "to-do"
+          }
+        }
+      },
+      "AllTasksForMonthResponse": {
+        "allOf": [
+          {
+            "_id": {
+              "type": "string",
+              "description": "Task's id in database (type ObjectId)",
+              "example": "64d5eb99a3ed01b542412a78"
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseTask"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "owner": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "User's id in database (type ObjectId)",
+                    "example": "tyd5eb99a3ed01b542412a78"
+                  },
+                  "avatarURL": {
+                    "type": "string",
+                    "description": "User's avatar URL",
+                    "example": "https://vrt.com/upload/avatar.jpg"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CreateTaskRequest": {
+        "type": "object",
+        "required": ["title", "start", "end", "priority", "date", "category"],
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseTask"
+          }
+        ]
+      },
+      "UpdateTaskRequest": {
+        "type": "object",
+        "description": "At least one field should be present",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/BaseTask"
+          }
+        ],
+        "minProperties": 1,
+        "additionalProperties": false
+      },
+      "CreateOrUpdateTaskResponse": {
+        "type": "object",
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "Task's id in database (type ObjectId)",
+                "example": "64d5eb99a3ed01b542412a78"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BaseTask"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "createdAt": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-08-10T00:03:36.511+00:00"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2023-08-10T00:03:36.511+00:00"
+              }
+            }
+          }
+        ]
+      },
+      "RemoveTaskResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Task deleted"
           }
         }
       },
