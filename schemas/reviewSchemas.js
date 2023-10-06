@@ -8,9 +8,9 @@ const reviewSchemas = Joi.object({
     'number.max': 'Rating should be at most 5',
     'any.required': 'Rating is required',
   }),
-  comment: Joi.string().min(10).max(250).required().messages({
+  comment: Joi.string().min(2).max(250).required().messages({
     'string.base': 'Comment should be a string',
-    'string.min': 'Comment should be at least 10',
+    'string.min': 'Comment should be at least 2',
     'string.max': 'Comment should not exceed 250 characters',
     'any.required': 'Comment is required',
   }),
