@@ -1,7 +1,4 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-
-const { ACCESS_TOKEN_SECRET } = process.env;
 
 const { User } = require('../models');
 const { HttpError } = require('../helpers');
@@ -43,25 +40,8 @@ const logoutService = async user => {
   await User.findByIdAndUpdate(user._id, { token: null });
 };
 
-const refreshService = async token => {
-  try {
-    const { id } = jwt.verify(token, ACCESS_TOKEN_SECRET);
-    const user = await User.findOne({ _id: id, token: token });
-
-    if (!user) {
-      throw new HttpError(403, 'Invalid token');
-    }
-
-    const tokens = createTokens(user);
-    return tokens;
-  } catch (error) {
-    throw new HttpError(403, error.message);
-  }
-};
-
 module.exports = {
   registerService,
   loginService,
   logoutService,
-  refreshService,
 };
