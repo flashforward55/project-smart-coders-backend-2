@@ -626,7 +626,7 @@
             "description": "Two digits of the month",
             "schema": {
               "type": "string",
-              "example": "09"
+              "example": "10"
             },
             "required": true
           },
@@ -1021,12 +1021,12 @@
               "birthday": {
                 "type": "string",
                 "description": "User's date of birth",
-                "example": "2023-09-30"
+                "example": "2023-10-30"
               },
               "createdAt": {
                 "type": "string",
                 "description": "Date of user profile creating",
-                "example": "2023-09-30T08:04:41.035Z"
+                "example": "2023-10-30T08:04:41.035Z"
               }
             }
           },
@@ -1066,7 +1066,7 @@
               "createdAt": {
                 "type": "string",
                 "description": "Date of user profile creating",
-                "example": "2023-09-30T08:04:41.035Z"
+                "example": "2023-10-30T08:04:41.035Z"
               },
               "birthday": {
                 "type": "string",
@@ -1371,7 +1371,7 @@
           "date": {
             "type": "string",
             "description": "Task`s completion date. Must be in YYYY-MM-DD format and start from 2023",
-            "example": "2023-09-01"
+            "example": "2023-10-01"
           },
           "category": {
             "type": "string",
