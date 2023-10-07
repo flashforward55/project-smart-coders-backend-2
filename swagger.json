@@ -1021,12 +1021,12 @@
               "birthday": {
                 "type": "string",
                 "description": "User's date of birth",
-                "example": "2023-10-30"
+                "example": "2023-10-05"
               },
               "createdAt": {
                 "type": "string",
                 "description": "Date of user profile creating",
-                "example": "2023-10-30T08:04:41.035Z"
+                "example": "2023-10-05T08:04:41.035Z"
               }
             }
           },
@@ -1066,7 +1066,7 @@
               "createdAt": {
                 "type": "string",
                 "description": "Date of user profile creating",
-                "example": "2023-10-30T08:04:41.035Z"
+                "example": "2023-10-05T08:04:41.035Z"
               },
               "birthday": {
                 "type": "string",
@@ -1179,7 +1179,7 @@
           "createdAt": {
             "type": "string",
             "description": "Date of user profile creating",
-            "example": "2023-10-11T08:04:41.035Z"
+            "example": "2023-10-05T08:04:41.035Z"
           }
         }
       },
@@ -1229,7 +1229,7 @@
             "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!",
             "owner": {
               "_id": "64de2a301502b642f7e35a50",
-              "name": "Kateryna Hilcher",
+              "name": "Tetiana Kashcha",
               "avatarURL": "https://example.com/avatar.jpg"
             }
           },
@@ -1239,7 +1239,7 @@
             "comment": "A good, visual time planning program.",
             "owner": {
               "_id": "64de2a301502b642f7e35a50",
-              "name": "Volodymyr Shvets",
+              "name": "Vasyl Lepish",
               "avatarURL": "https://example.com/avatar.jpg"
             }
           }
@@ -1371,7 +1371,7 @@
           "date": {
             "type": "string",
             "description": "Task`s completion date. Must be in YYYY-MM-DD format and start from 2023",
-            "example": "2023-10-01"
+            "example": "2023-10-05"
           },
           "category": {
             "type": "string",
@@ -1407,7 +1407,7 @@
                   "avatarURL": {
                     "type": "string",
                     "description": "User's avatar URL",
-                    "example": "https://vrt.com/upload/avatar.jpg"
+                    "example": "https://res.cloudinary.com/dqmascmsd/image/upload/v1696704655/hj9hai6covx0du8zn4yk.jpg"
                   }
                 }
               }
@@ -1457,12 +1457,12 @@
               "createdAt": {
                 "type": "string",
                 "format": "date-time",
-                "example": "2023-08-10T00:03:36.511+00:00"
+                "example": "2023-10-05T00:03:36.511+00:00"
               },
               "updatedAt": {
                 "type": "string",
                 "format": "date-time",
-                "example": "2023-08-10T00:03:36.511+00:00"
+                "example": "2023-10-05T00:03:36.511+00:00"
               }
             }
           }
