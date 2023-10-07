@@ -1183,7 +1183,167 @@
           }
         }
       },
-            "BaseTask": {
+      "AllReviews": {
+        "type": "array",
+        "description": "An array containing all user reviews",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Review's id in database (type ObjectId)"
+          },
+          "comment": {
+            "type": "string",
+            "description": "User's comment about the product or service",
+            "maxLength": 300
+          },
+          "rating": {
+            "type": "integer",
+            "description": "User's rating of the product or service",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "owner": {
+            "type": "object",
+            "description": "Information about the user who left the review",
+            "properties": {
+              "_id": {
+                "type": "string",
+                "description": "User's id in database (type ObjectId)"
+              },
+
+              "name": {
+                "type": "string",
+                "description": "User's name"
+              },
+              "avatarURL": {
+                "type": "string",
+                "description": "URL to the user's avatar image"
+              }
+            }
+          }
+        },
+        "example": [
+          {
+            "_id": "64de98aacfa11ece42fbac7b",
+            "rating": 5,
+            "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!",
+            "owner": {
+              "_id": "64de2a301502b642f7e35a50",
+              "name": "Kateryna Hilcher",
+              "avatarURL": "https://example.com/avatar.jpg"
+            }
+          },
+          {
+            "_id": "64de98aacfa11ece42fbac7b",
+            "rating": 4,
+            "comment": "A good, visual time planning program.",
+            "owner": {
+              "_id": "64de2a301502b642f7e35a50",
+              "name": "Volodymyr Shvets",
+              "avatarURL": "https://example.com/avatar.jpg"
+            }
+          }
+        ]
+      },
+      "AddReviewRequest": {
+        "type": "object",
+        "required": ["rating", "comment"],
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "description": "Review rating",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "comment": {
+            "type": "string",
+            "description": "Review comment"
+          }
+        }
+      },
+      "AddReviewResponse": {
+        "type": "object",
+        "description": "Data structure for adding a new user review",
+        "required": ["comment", "rating"],
+        "properties": {
+          "comment": {
+            "type": "string",
+            "description": "User's comment about the product or service",
+            "maxLength": 300
+          },
+          "rating": {
+            "type": "integer",
+            "description": "User's rating of the product or service",
+            "minimum": 1,
+            "maximum": 5
+          }
+        },
+        "example": {
+          "rating": 5,
+          "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!"
+        }
+      },
+      "UserReview": {
+        "type": "object",
+        "description": "Get the review of the current user for a product or service",
+        "required": ["comment", "rating"],
+        "properties": {
+          "comment": {
+            "type": "string",
+            "description": "User's comment about the product or service",
+            "maxLength": 300
+          },
+          "rating": {
+            "type": "integer",
+            "description": "User's rating of the product or service",
+            "minimum": 1,
+            "maximum": 5
+          }
+        },
+        "example": {
+          "rating": 5,
+          "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!"
+        }
+      },
+      "PatchReviewRequest": {
+        "type": "object",
+        "required": ["rating", "comment"],
+        "properties": {
+          "rating": {
+            "type": "integer",
+            "description": "Review rating",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "comment": {
+            "type": "string",
+            "description": "Review comment"
+          }
+        }
+      },
+      "PatchReviewResponses": {
+        "type": "object",
+        "description": "Data structure for changing user review",
+        "required": ["comment", "rating"],
+        "properties": {
+          "comment": {
+            "type": "string",
+            "description": "User's comment about the product or service",
+            "maxLength": 300
+          },
+          "rating": {
+            "type": "integer",
+            "description": "User's rating of the product or service",
+            "minimum": 1,
+            "maximum": 5
+          }
+        },
+        "example": {
+          "rating": 5,
+          "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!"
+        }
+      },
+      "BaseTask": {
         "type": "object",
         "properties": {
           "title": {
