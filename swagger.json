@@ -1564,6 +1564,19 @@
           }
         }
       },
+       "Error409ReviewsResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "User review already exist"
+          },
+          "status": {
+            "type": "integer",
+            "example": 409
+          }
+        }
+      },
       "Error500Response": {
         "type": "object",
         "properties": {
