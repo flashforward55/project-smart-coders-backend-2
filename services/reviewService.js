@@ -3,11 +3,10 @@ const { Review } = require('../models');
 const { HttpError } = require('../helpers');
 
 const getAllReviewService = async () => {
-  const result = await Review.find().exec();
-
-  if (result.length === 0) {
-    throw new HttpError(404, 'Not found');
-  }
+  const result = await Review.find({}, '-createdAt -updatedAt').populate(
+    'owner',
+    'name avatarURL'
+  );
   return result;
 };
 
@@ -19,9 +18,9 @@ const getUserReviewService = async user => {
     '-createdAt -updatedAt'
   ).exec();
 
-  if (result.length === 0) {
-    throw new HttpError(404, 'Not found');
-  }
+  // if (result.length === 0) {
+  //   throw new HttpError(404, 'Not found');
+  // }
   return result;
 };
 
