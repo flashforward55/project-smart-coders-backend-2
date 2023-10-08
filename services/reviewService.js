@@ -18,10 +18,11 @@ const getUserReviewService = async user => {
     '-createdAt -updatedAt'
   ).exec();
 
-  // if (result.length === 0) {
-  //   throw new HttpError(404, 'Not found');
-  // }
-  return result;
+  const response = result
+    ? { rating: result.rating, comment: result.comment }
+    : {};
+
+  return response;
 };
 
 const createService = async (user, body) => {
