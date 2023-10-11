@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.1",
     "title": "GooseTrack",
-    "description": " Welcome to the Personal To-Do List API! You can find the source code on [GitHub](https://github.com/Tatiana-Kashcha/project-smart-coders-frontend). \n\n **Key Features:** \n\n Our website offers a robust task tracking system with a focus on personal to-do lists. Here's what you can do: \n\n **User Registration and Authentication:** Sign up and log in securely to access your tasks. \n\n **User Profile Customization:** Edit your user profile and add reviews to share your experience. \n\n **Task Management:** Create, view, edit, and delete tasks effortlessly. \n\n **Task Sorting:** Organize your tasks by date, set or redefine priorities, and track their completion status. \n\n **Statistical Insights:** Get insights into your task completion statistics over specific time periods. \n\n **Calendar Integration:** View your tasks on a calendar for better scheduling. \n\n **Task List View:** Easily view tasks grouped by their execution status. \n\n **Technology Stack:** \n\n Our project relies on a robust technology stack, including: \n\n **Node.js:** The JavaScript runtime for server-side operations. \n\n **Express.js:** A powerful framework for building web applications on Node.js. \n\n **MongoDB:** A flexible NoSQL database solution. \n\n **Mongoose:** A Node.js library that simplifies working with MongoDB. \n\n Join us on this journey of efficient task management and enjoy the benefits of an organized to-do list. Start achieving your goals with our Personal To-Do List API! " 
+    "description": "Personal to-do list website"
   },
   "consumes": [
     "application/json",
@@ -339,280 +339,6 @@
         }
       }
     },
-    "/reviews": {
-      "get": {
-        "tags": ["Reviews"],
-        "summary": "Get all reviews of all",
-        "description": "This endpoint retrieves all reviews of products or services.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AllReviews"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Reviews not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error404Response"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error500Response"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/reviews/own": {
-      "get": {
-        "tags": ["Reviews"],
-        "summary": "Get current user's review",
-        "description": "Get the review of the current user for a product or service",
-        "security": [{ "Bearer": [] }],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserReview"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request (invalid request body)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error400Response"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized: Authentication credentials are missing or invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error401Response"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error500Response"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": ["Reviews"],
-        "summary": "Add review",
-        "description": "This endpoint allows user to add a  review for a product or service.",
-        "security": [{ "Bearer": [] }],
-        "parameters": [],
-        "requestBody": {
-          "description": "Review's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AddReviewRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Review added successfully",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/AddReviewResponse" }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request (invalid request body)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error400Response"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized: Authentication credentials are missing or invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error401Response"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict: The review could not be added due to a conflict with an existing resource",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error409ReviewsResponse"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error500Response"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": ["Reviews"],
-        "summary": "Update review by user's id",
-        "security": [{ "Bearer": [] }],
-        "parameters": [],
-        "requestBody": {
-          "description": "Review's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PatchReviewRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PatchReviewResponses"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request (invalid request body)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error400Response"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized: Authentication credentials are missing or invalid",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error401Response"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Reviews not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error404Response"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error500Response"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Reviews"],
-        "summary": "Delete review",
-        "security": [{ "Bearer": [] }],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {}
-          },
-          "204": {
-            "description": "Successful operation",
-            "content": {}
-          },
-          "401": {
-            "description": "Unauthorized (invalid access token)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error401Response"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Review not found / Invalid user / Invalid session",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error404Response"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server Error: the server encountered an unexpected condition that prevented it from fulfilling the request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error500Response"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/tasks": {
       "get": {
         "tags": [
@@ -626,7 +352,7 @@
             "description": "Two digits of the month",
             "schema": {
               "type": "string",
-              "example": "10"
+              "example": "09"
             },
             "required": true
           },
@@ -1021,12 +747,12 @@
               "birthday": {
                 "type": "string",
                 "description": "User's date of birth",
-                "example": "2023-10-05"
+                "example": "2023-09-30"
               },
               "createdAt": {
                 "type": "string",
                 "description": "Date of user profile creating",
-                "example": "2023-10-05T08:04:41.035Z"
+                "example": "2023-09-30T08:04:41.035Z"
               }
             }
           },
@@ -1066,7 +792,7 @@
               "createdAt": {
                 "type": "string",
                 "description": "Date of user profile creating",
-                "example": "2023-10-05T08:04:41.035Z"
+                "example": "2023-09-30T08:04:41.035Z"
               },
               "birthday": {
                 "type": "string",
@@ -1081,7 +807,7 @@
               "skype": {
                 "type": "string",
                 "description": "User's skype number",
-                "example": "name_skype"
+                "example": "38 (000) 123 45 67"
               }
             }
           }
@@ -1128,7 +854,7 @@
           "skype": {
             "type": "string",
             "description": "User's skype number",
-            "example": "name_skype"
+            "example": "+44 (000) 123 45 67"
           },
           "birthday": {
             "type": "string",
@@ -1164,7 +890,7 @@
           "skype": {
             "type": "string",
             "description": "User's skype number",
-            "example": "name_skype"
+            "example": "+44 (000) 123 45 67"
           },
           "birthday": {
             "type": "string",
@@ -1179,171 +905,11 @@
           "createdAt": {
             "type": "string",
             "description": "Date of user profile creating",
-            "example": "2023-10-05T08:04:41.035Z"
+            "example": "2023-10-11T08:04:41.035Z"
           }
         }
       },
-      "AllReviews": {
-        "type": "array",
-        "description": "An array containing all user reviews",
-        "properties": {
-          "_id": {
-            "type": "string",
-            "description": "Review's id in database (type ObjectId)"
-          },
-          "comment": {
-            "type": "string",
-            "description": "User's comment about the product or service",
-            "maxLength": 300
-          },
-          "rating": {
-            "type": "integer",
-            "description": "User's rating of the product or service",
-            "minimum": 1,
-            "maximum": 5
-          },
-          "owner": {
-            "type": "object",
-            "description": "Information about the user who left the review",
-            "properties": {
-              "_id": {
-                "type": "string",
-                "description": "User's id in database (type ObjectId)"
-              },
-
-              "name": {
-                "type": "string",
-                "description": "User's name"
-              },
-              "avatarURL": {
-                "type": "string",
-                "description": "URL to the user's avatar image"
-              }
-            }
-          }
-        },
-        "example": [
-          {
-            "_id": "64de98aacfa11ece42fbac7b",
-            "rating": 5,
-            "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!",
-            "owner": {
-              "_id": "64de2a301502b642f7e35a50",
-              "name": "Tetiana Kashcha",
-              "avatarURL": "https://example.com/avatar.jpg"
-            }
-          },
-          {
-            "_id": "64de98aacfa11ece42fbac7b",
-            "rating": 4,
-            "comment": "A good, visual time planning program.",
-            "owner": {
-              "_id": "64de2a301502b642f7e35a50",
-              "name": "Vasyl Lepish",
-              "avatarURL": "https://example.com/avatar.jpg"
-            }
-          }
-        ]
-      },
-      "AddReviewRequest": {
-        "type": "object",
-        "required": ["rating", "comment"],
-        "properties": {
-          "rating": {
-            "type": "integer",
-            "description": "Review rating",
-            "minimum": 1,
-            "maximum": 5
-          },
-          "comment": {
-            "type": "string",
-            "description": "Review comment"
-          }
-        }
-      },
-      "AddReviewResponse": {
-        "type": "object",
-        "description": "Data structure for adding a new user review",
-        "required": ["comment", "rating"],
-        "properties": {
-          "comment": {
-            "type": "string",
-            "description": "User's comment about the product or service",
-            "maxLength": 300
-          },
-          "rating": {
-            "type": "integer",
-            "description": "User's rating of the product or service",
-            "minimum": 1,
-            "maximum": 5
-          }
-        },
-        "example": {
-          "rating": 5,
-          "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!"
-        }
-      },
-      "UserReview": {
-        "type": "object",
-        "description": "Get the review of the current user for a product or service",
-        "required": ["comment", "rating"],
-        "properties": {
-          "comment": {
-            "type": "string",
-            "description": "User's comment about the product or service",
-            "maxLength": 300
-          },
-          "rating": {
-            "type": "integer",
-            "description": "User's rating of the product or service",
-            "minimum": 1,
-            "maximum": 5
-          }
-        },
-        "example": {
-          "rating": 5,
-          "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!"
-        }
-      },
-      "PatchReviewRequest": {
-        "type": "object",
-        "required": ["rating", "comment"],
-        "properties": {
-          "rating": {
-            "type": "integer",
-            "description": "Review rating",
-            "minimum": 1,
-            "maximum": 5
-          },
-          "comment": {
-            "type": "string",
-            "description": "Review comment"
-          }
-        }
-      },
-      "PatchReviewResponses": {
-        "type": "object",
-        "description": "Data structure for changing user review",
-        "required": ["comment", "rating"],
-        "properties": {
-          "comment": {
-            "type": "string",
-            "description": "User's comment about the product or service",
-            "maxLength": 300
-          },
-          "rating": {
-            "type": "integer",
-            "description": "User's rating of the product or service",
-            "minimum": 1,
-            "maximum": 5
-          }
-        },
-        "example": {
-          "rating": 5,
-          "comment": "Really helps to plan the day and visualize tasks. Exactly what I was looking for. Huge thanks to the developers!"
-        }
-      },
-      "BaseTask": {
+            "BaseTask": {
         "type": "object",
         "properties": {
           "title": {
@@ -1371,7 +937,7 @@
           "date": {
             "type": "string",
             "description": "Task`s completion date. Must be in YYYY-MM-DD format and start from 2023",
-            "example": "2023-10-05"
+            "example": "2023-09-01"
           },
           "category": {
             "type": "string",
@@ -1407,7 +973,7 @@
                   "avatarURL": {
                     "type": "string",
                     "description": "User's avatar URL",
-                    "example": "https://res.cloudinary.com/dqmascmsd/image/upload/v1696704655/hj9hai6covx0du8zn4yk.jpg"
+                    "example": "https://vrt.com/upload/avatar.jpg"
                   }
                 }
               }
@@ -1457,12 +1023,12 @@
               "createdAt": {
                 "type": "string",
                 "format": "date-time",
-                "example": "2023-10-05T00:03:36.511+00:00"
+                "example": "2023-08-10T00:03:36.511+00:00"
               },
               "updatedAt": {
                 "type": "string",
                 "format": "date-time",
-                "example": "2023-10-05T00:03:36.511+00:00"
+                "example": "2023-08-10T00:03:36.511+00:00"
               }
             }
           }
@@ -1557,19 +1123,6 @@
           "message": {
             "type": "string",
             "example": "This user is already exist"
-          },
-          "status": {
-            "type": "integer",
-            "example": 409
-          }
-        }
-      },
-       "Error409ReviewsResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "example": "User review already exist"
           },
           "status": {
             "type": "integer",
