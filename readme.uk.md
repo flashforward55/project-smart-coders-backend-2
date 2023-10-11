@@ -1,7 +1,7 @@
 # GooseTrack project backend repository
 
 Цей проєкт містить backend частину веб-застосунку
-[планувальника завдань GooseTrack](https://github.com/Tatiana-Kashcha/project-smart-coders-frontend).
+[планувальника завдань GooseTrack](https://github.com/flashforward55/project-smart-coders-backend-2).
 Він забезпечує реєстрацію, авторизацію, управління відгуками та завданнями
 користувачів.
 
@@ -19,15 +19,15 @@
 ### Розгортання backend частини додатку
 
 Backend частина розгорнута на сервері Render.com та доступна за посиланням:
-[https://project-smart-coders-backend.onrender.com/](https://project-smart-coders-backend.onrender.com/).
+[https://project-smart-coders-backend-2.onrender.com/](https://project-smart-coders-backend-2.onrender.com/).
 
 ### Документація API
 
 Для роботи з проєктом створено документацію ендпоінтів з використанням Swagger
 UI. Ви можете знайти її за цим
-[посиланням](https://project-smart-coders-backend.onrender.com/docs/).
+[посиланням](https://project-smart-coders-backend-2.onrender.com/docs/).
 
 ### Репозиторій frontend частини
 
 Перевірити код frontend частини застосунку можна у:
-[frontend репозиторії GooseTrack](https://github.com/Tatiana-Kashcha/project-smart-coders-frontend).
+[frontend репозиторії GooseTrack](https://github.com/flashforward55/project-smart-coders-frontend-2).

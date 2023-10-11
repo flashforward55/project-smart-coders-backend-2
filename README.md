@@ -1,7 +1,7 @@
 # GooseTrack project backend repository
 
 This project contains the backend part of the web application
-[GooseTrack Task Planner](https://github.com/Tatiana-Kashcha/project-smart-coders-frontend)). It
+[GooseTrack Task Planner](https://github.com/flashforward55/project-smart-coders-backend-2)). It
 provides user registration, authentication, management of reviews, and user
 tasks.
 
@@ -20,15 +20,15 @@ follow these steps:
 
 The backend component has been deployed on the Render.com server and is
 accessible at:
-[https://project-smart-coders-backend.onrender.com/](https://project-smart-coders-backend.onrender.com/).
+[https://project-smart-coders-backend.onrender-2.com/](https://project-smart-coders-backend.onrender-2.com/).
 
 ### API Documentation
 
 For working with the project, documentation of endpoints has been created using
 Swagger UI. You can find it at this
-[GooseTrack API Documentation](https://project-smart-coders-backend.onrender.com/docs/)
+[GooseTrack API Documentation](https://project-smart-coders-backend.onrender.com-2/docs/)
 
 ### Backend Repository
 
 Check out the frontend code at:
-[GooseTrack Frontend Repository](https://github.com/Tatiana-Kashcha/project-smart-coders-frontend)
+[GooseTrack Frontend Repository](https://github.com/flashforward55/project-smart-coders-frontend-2)
