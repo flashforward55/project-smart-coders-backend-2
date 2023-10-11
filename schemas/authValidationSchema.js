@@ -9,7 +9,7 @@ const registerValidationSchema = Joi.object({
   }),
   password: Joi.string().pattern(passwordRegex).required().messages({
     'string.pattern.base':
-      'Password should contain at least eight characters and at least one number and one letter',
+      'Password should contain  at least eight characters and at least one number and one letter',
   }),
 });
 

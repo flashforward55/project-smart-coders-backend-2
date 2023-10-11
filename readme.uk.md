@@ -8,7 +8,7 @@
 ### Розгортання та налаштування
 
 Переконайтеся, що у вас встановлені LTS версія
-[Node.js](npm.https://nodejs.org/uk) та [npm](https://www.npmjs.com). Для того,
+[Node.js](npm.https://nodejs.org/uk) та [npm](https://www.npmjs.com/). Для того,
 щоб отримати та запустити цей проєкт локально, дотримуйтесь наступних кроків:
 
 ### Команди
@@ -19,13 +19,13 @@
 ### Розгортання backend частини додатку
 
 Backend частина розгорнута на сервері Render.com та доступна за посиланням:
-[https://project-smart-coders-backend.onrender.com/](https://project-smart-coders-backend.onrender.com).
+[https://project-smart-coders-backend.onrender.com/](https://project-smart-coders-backend.onrender.com/).
 
 ### Документація API
 
 Для роботи з проєктом створено документацію ендпоінтів з використанням Swagger
 UI. Ви можете знайти її за цим
-[посиланням](https://project-smart-coders-backend.onrender.com/docs).
+[посиланням](https://project-smart-coders-backend.onrender.com/docs/).
 
 ### Репозиторій frontend частини
 

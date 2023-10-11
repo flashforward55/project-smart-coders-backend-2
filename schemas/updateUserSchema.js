@@ -6,11 +6,12 @@ const updateUserSchema = Joi.object().keys({
   name: registerValidationSchema.extract('name'),
   email: registerValidationSchema.extract('email'),
   phone: Joi.string().pattern(phoneRegex).allow('').messages({
-    'string.pattern.base': 'Valid number is format +38 (000) 123 45 67',
+    'string.pattern.base':
+      'Valid number is +38 (000) 123 45 67 or 38 (000) 123 45 67 and country code consist of 1-3 numbers or empty field phone',
   }),
   skype: Joi.string().pattern(skypeRegex).allow('').messages({
     'string.pattern.base':
-      'Valid skype is format only latin letters, numbers, and the following special characters: period (.), underscore (_), hyphen (-),',
+      'Valid skype number is +38 (000) 123 45 67 or 38 (000) 123 45 67 and country code consist of 1-3 numbers or empty field skype',
   }),
   birthday: Joi.string().pattern(birthdayRegex).messages({
     'string.pattern.base': 'Valid birthday has format YYYY-MM-DD',
