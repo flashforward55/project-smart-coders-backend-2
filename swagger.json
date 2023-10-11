@@ -1081,7 +1081,7 @@
               "skype": {
                 "type": "string",
                 "description": "User's skype number",
-                "example": "name_skype"
+                "example": "38 (067) 123 45 67"
               }
             }
           }
@@ -1128,7 +1128,7 @@
           "skype": {
             "type": "string",
             "description": "User's skype number",
-            "example": "name_skype"
+            "example": "38 (067) 123 45 67"
           },
           "birthday": {
             "type": "string",
@@ -1164,7 +1164,7 @@
           "skype": {
             "type": "string",
             "description": "User's skype number",
-            "example": "name_skype"
+            "example": "+38 (067) 123 45 67"
           },
           "birthday": {
             "type": "string",
