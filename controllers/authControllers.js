@@ -1,5 +1,9 @@
 const { ctrlWrapper } = require('../helpers');
-const { registerService, loginService, logoutService } = require('../services');
+const {
+  registerService,
+  loginService,
+  logoutService,
+} = require('../services/authServices');
 
 const { User } = require('../models');
 
